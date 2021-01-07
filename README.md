@@ -1,8 +1,10 @@
-# `Grasp` - Create strong passwords using words that are easy for you to remember
+# `Grasp` 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/lucasepe/grasp)](https://goreportcard.com/report/github.com/lucasepe/grasp) &nbsp;&nbsp;&nbsp; [![Go Coverage](https://gocover.io/_badge/github.com/lucasepe/grasp?nocache=grasp)](https://gocover.io/_badge/github.com/lucasepe/grasp?nocache=grasp) &nbsp;&nbsp;&nbsp; [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Flucasepe%2Fgrasp)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Flucasepe%2Fgrasp) 
 
-## A password manager that does not require any type of storage.
+## Create strong passwords using words that are easy for you to remember
+
+## A password manager that does not require any type of storage
 
 Cross Platform simple and secure password generator / manager that does not require a file/cloud/whatever archive.
 
