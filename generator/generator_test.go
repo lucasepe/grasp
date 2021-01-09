@@ -12,20 +12,20 @@ func TestGeneratorDisallowsRepeat(t *testing.T) {
 		want    string
 	}{
 		{
-			[]string{"mail.google.com", "pinco.pallo@gmail.com"},
-			6, "|Lv2\\N",
+			[]string{"mail.google.com", "pinco.pallo@gmail.com", "this", "is", "sparta!"},
+			6, "%{sW:y",
 		},
 		{
-			[]string{"twitter.com", "monster.hunter@email.com"},
-			9, "@z21o<K&>",
+			[]string{"twitter.com", "monster.hunter@email.com", "you", "never", "know$$"},
+			9, "%|<T.Ba({",
 		},
 		{
-			[]string{"yahoo.com", "dev.to.dev@yahoo.com"},
-			12, "ARbCD5}&7Mxu",
+			[]string{"yahoo.com", "dev.to.dev@yahoo.com", "scarlet", "is", "!hot!"},
+			12, "V[Nb#xaI*46\\",
 		},
 		{
-			[]string{"facebook.com", "mev@github.com"},
-			20, "w(W4C+@SOH[FI5*aryjt",
+			[]string{"facebook.com", "mev@github.com", "look", "here"},
+			20, "!He*Fj-zTwOWGVBQ3Z8&",
 		},
 	}
 
@@ -60,20 +60,20 @@ func TestGeneratorNoSymbolsDisallowsRepeat(t *testing.T) {
 		want    string
 	}{
 		{
-			[]string{"mail.google.com", "pinco.pallo@gmail.com"},
-			6, "dvTEfL",
+			[]string{"mail.google.com", "pinco.pallo@gmail.com", "this", "is", "sparta!"},
+			6, "Lm5U3z",
 		},
 		{
-			[]string{"twitter.com", "monster.hunter@email.com"},
-			9, "q0AlZ9cGy",
+			[]string{"twitter.com", "monster.hunter@email.com", "you", "never", "know$$"},
+			9, "CjyKd4VOv",
 		},
 		{
-			[]string{"yahoo.com", "dev.to.dev@yahoo.com"},
-			12, "GldprPXSAKxt",
+			[]string{"yahoo.com", "dev.to.dev@yahoo.com", "scarlet", "is", "!hot!"},
+			12, "IBHwjoVFYUzS",
 		},
 		{
-			[]string{"facebook.com", "mev@github.com"},
-			20, "u1BKgqY60zFixbQXVWDj",
+			[]string{"facebook.com", "mev@github.com", "look", "here"},
+			20, "kwpIhel83U1VZLjTdK5F",
 		},
 	}
 
@@ -109,20 +109,20 @@ func TestGeneratorNoSymbolsAllowsRepeat(t *testing.T) {
 		differentChars bool
 	}{
 		{
-			[]string{"mail.google.com", "pinco.pallo@gmail.com"},
-			6, "dvTEfL", true,
+			[]string{"mail.google.com", "pinco.pallo@gmail.com", "this", "is", "sparta!"},
+			6, "Lm5U3z", true,
 		},
 		{
-			[]string{"twitter.com", "monster.hunter@email.com"},
-			9, "q0AlZ9cGy", true,
+			[]string{"twitter.com", "monster.hunter@email.com", "you", "never", "know$$"},
+			9, "Cmjyy4VOd", false,
 		},
 		{
-			[]string{"yahoo.com", "dev.to.dev@yahoo.com"},
-			12, "GlpIPSASKt1C", false,
+			[]string{"yahoo.com", "dev.to.dev@yahoo.com", "scarlet", "is", "!hot!"},
+			12, "pHfHUwbzVOJQ", false,
 		},
 		{
-			[]string{"facebook.com", "mev@github.com"},
-			20, "VKqiuB1bDzx0KglYs0WH", false,
+			[]string{"facebook.com", "mev@github.com", "look", "here"},
+			20, "ckwlpkselXU1ZvLLjTKP", false,
 		},
 	}
 

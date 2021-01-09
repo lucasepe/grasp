@@ -1,9 +1,10 @@
 package generator
 
 import (
+	"math/rand"
 	"strings"
 
-	"github.com/lucasepe/grasp/mt19337"
+	"github.com/lucasepe/grasp/csprng"
 )
 
 const (
@@ -20,10 +21,10 @@ const (
 // Generator is the stateful generator which can be used to customize the list
 // of letters, digits, and/or symbols.
 type Generator struct {
-	letters string
-	digits  string
-	symbols string
-	prng    *mt19337.MT19937
+	letters    string
+	digits     string
+	symbols    string
+	randomizer *rand.Rand
 }
 
 // Option is used as input to the NewGenerator function.
@@ -57,21 +58,16 @@ func WithSymbols(symbols string) Option {
 // input is given, all the default values are used. This function is safe for
 // concurrent use.
 func NewGenerator(secrets []string, opts ...Option) (*Generator, error) {
-	key, err := deriveKey(secrets)
-	if err != nil {
-		return nil, err
-	}
-
-	mt, err := mt19337WithKey(key)
+	src, err := csprng.New(secrets)
 	if err != nil {
 		return nil, err
 	}
 
 	res := &Generator{
-		letters: Letters,
-		digits:  Digits,
-		symbols: Symbols,
-		prng:    mt,
+		letters:    Letters,
+		digits:     Digits,
+		symbols:    Symbols,
+		randomizer: rand.New(src),
 	}
 
 	// Loop through each option
@@ -107,14 +103,14 @@ func (g *Generator) Generate(length int, noDigits, noSymbols, allowRepeat bool) 
 
 	// Characters
 	for i := 0; i < length; i++ {
-		ch := randomLetter(g.prng, chars)
+		ch := randomLetter(g.randomizer, chars)
 
 		if !allowRepeat && strings.Contains(result, ch) {
 			i--
 			continue
 		}
 
-		result = randomInsert(g.prng, result, ch)
+		result = randomInsert(g.randomizer, result, ch)
 	}
 
 	return result, nil
