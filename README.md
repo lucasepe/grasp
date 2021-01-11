@@ -103,3 +103,11 @@ Finally the password is composed picking characters, digits and symbols using th
 ---
 
 ![](demo.gif)
+
+---
+
+## Credits
+
+A huge thank you to:
+
+> [Christopher Wellons](https://github.com/skeeto) for his hints about security and help in replacing the Mersenne Twister PRNG algorithm by a `cipher.Stream` CSPRNG with cryptographic AES.
