@@ -26,10 +26,11 @@ Using `grasp` all you need to remember are:
 
 ## How to install
 
-### [Go](https://golang.org/doc/install) get
+### [Homebrew](https://brew.sh/index_it)
 
 ```bash
-$ go get -u github.com/lucasepe/grasp
+brew tap lucasepe/grasp
+brew install grasp
 ```
 
 ## Ready-To-Use Releases 
@@ -41,17 +42,17 @@ $ go get -u github.com/lucasepe/grasp
 ## How to use (examples)
 
 ```
-$ grasp google.com pinco.pallo@gmail.com Vercingetorige! 
-Xj>_Cl.K3nRa
+grasp google.com pinco.pallo@gmail.com vercingetorige
+>qhOzrL^*+IF
 ```
 
 ```
-$ grasp linkedin.com pinco.pallo@gmail.com hope to find the job of my life!
+grasp linkedin.com pinco.pallo@gmail.com hope to find the job of my life!
 y@xV4.w$|mIp
 ```
 
 ```
-$ grasp -s L --no-symbols amazon.com leonida@sparta.com this is lambda!
+grasp -s L --no-symbols amazon.com leonida@sparta.com this is lambda!
 sRZg5qOvK2GnDLJ9
 ```
 
@@ -88,17 +89,6 @@ Finally the password is composed picking characters, digits and symbols using th
 
 - all these calculations are done _"on the fly"_ every time you request it 
 - this is why `grasp` does not need any archive
-
----
-
-> :warning: **NOTE!**
->
-> The v0.2.0:
-> 
-> - [replaces](CHANGELOG.md) the PBKDF2 key generation with the stronger Argon2
-> - [replaces](CHANGELOG.md) the PRNG with a cryptographically secure pseudorandom number generator (CSPRNG) 
->
-> this implies a <u>breaking change</u>; see [CHANGELOG](CHANGELOG.md) for more details.
 
 ---
 

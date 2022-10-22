@@ -1,3 +1,9 @@
+0.3.1 (Oct 22, 2022)
+
+- Fix typo in `--version` output
+
+---
+
 0.3.0 (Oct 22, 2022)
 
 - Bump Go version to 1.19
