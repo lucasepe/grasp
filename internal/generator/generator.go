@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/lucasepe/grasp/csprng"
+	"github.com/lucasepe/grasp/internal/csprng"
 )
 
 const (

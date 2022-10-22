@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/lucasepe/grasp/generator"
+	"github.com/lucasepe/grasp/internal/generator"
 	"github.com/spf13/cobra"
 )
 

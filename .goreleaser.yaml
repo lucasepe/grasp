@@ -1,0 +1,46 @@
+# Run locally with: goreleaser --rm-dist --snapshot --skip-publish
+project_name: grasp
+before:
+  hooks:
+    - go mod tidy
+    - go mod download
+builds:
+- env:
+    - CGO_ENABLED=0
+  ldflags:
+    - -s -w -X "main.Version={{.Version}}" -X "main.Build={{.ShortCommit}}"
+    - -a -extldflags "-static"
+  goos:
+    - windows
+    - linux
+    - darwin
+  goarch:
+    #- arm
+    - arm64
+    - amd64
+  goarm:
+    - 7
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+brews:
+  - homepage: 'https://github.com/lucasepe/homebrew-grasp'
+    description: 'A password manager that does not require any type of storage.'
+    folder: Formula
+    commit_author:
+      name: lucasepe
+      email: luca.sepe@kiragmailtech.it
+    tap:
+      owner: lucasepe
+      name: homebrew-grasp
+    install: |
+      bin.install "grasp"
+
+announce:
+  twitter:
+    enabled: false
+    message_template: 'Grasp {{ .Tag }} is out! Check it out: https://github.com/lucasepe/grasp/releases/tag/{{ .Tag }}'
+

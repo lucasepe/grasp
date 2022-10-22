@@ -23,6 +23,8 @@
 *.dylib
 *.dat
 *.DS_Store
+**/bin/**
+*.log
 
 # Test binary, built with `go test -c`
 *.test
@@ -35,3 +37,21 @@
 
 # This is my wip ideas folder
 experiments/**
+
+# Dotenv files
+.env
+**/*.env
+
+# Crossplane stuffs
+.cache/**
+.work/**
+_output/**
+cover.out
+vendor/**
+.vendor-new/**
+.tool-versions
+demo.yaml
+# *.gif
+.dccache
+secret.txt
+

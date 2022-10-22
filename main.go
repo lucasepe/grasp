@@ -28,11 +28,11 @@ var (
 	// Version release version
 	Version = "0.0.1"
 
-	// GitCommit will be overwritten automatically by the build system
-	GitCommit = "HEAD"
+	// Build will be overwritten automatically by the build system
+	Build = "HEAD"
 )
 
 func main() {
-	fullVersion := fmt.Sprintf("%s@%s", Version, GitCommit)
+	fullVersion := fmt.Sprintf("%s@%s", Version, Build)
 	cmd.Execute(fullVersion)
 }
