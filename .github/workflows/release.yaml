@@ -4,8 +4,6 @@ on:
   push:
     tags: [ 'v*' ]
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
 
 jobs:
   goreleaser:
