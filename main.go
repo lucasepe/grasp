@@ -20,6 +20,9 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"os"
+	"time"
 
 	"github.com/lucasepe/grasp/cmd"
 )
@@ -33,6 +36,13 @@ var (
 )
 
 func main() {
-	fullVersion := fmt.Sprintf("%s@%s", Version, Build)
-	cmd.Execute(fullVersion)
+	cli := cmd.Grasp(Version, Build)
+	if err := cli.Execute(); err != nil {
+		fmt.Printf("error: %s\n", err.Error())
+		os.Exit(1)
+	}
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
 }

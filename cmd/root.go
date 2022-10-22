@@ -2,17 +2,14 @@ package cmd
 
 import (
 	"fmt"
-	"math/rand"
-	"os"
-	"path/filepath"
-	"time"
 
 	"github.com/lucasepe/grasp/internal/generator"
 	"github.com/spf13/cobra"
 )
 
 const (
-	banner = `┌─┐┬─┐┌─┐┌─┐┌─┐
+	appName = "grasp"
+	banner  = `┌─┐┬─┐┌─┐┌─┐┌─┐
 │ ┬├┬┘├─┤└─┐├─┘
 └─┘┴└─┴ ┴└─┘┴  `
 
@@ -24,15 +21,14 @@ const (
 	optNoNL      = "no-newline"
 )
 
-// rootCmd represents the base command when called without any subcommands
-var (
-	rootCmd = &cobra.Command{
+func Grasp(tag, shortCommit string) *cobra.Command {
+	rootCmd := &cobra.Command{
 		DisableSuggestions:    true,
 		DisableFlagsInUseLine: true,
 		SilenceUsage:          true,
 		SilenceErrors:         true,
 		Args:                  cobra.MinimumNArgs(2),
-		Use:                   fmt.Sprintf("%s <KEYWORD_1> <KEYWORD_1> [... KEYWORD_n]", appName()),
+		Use:                   fmt.Sprintf("%s <KEYWORD_1> <KEYWORD_1> [... KEYWORD_n]", appName),
 		Short:                 appSummary,
 		Long:                  fmt.Sprintf("%s\n%s", banner, appSummary),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -71,30 +67,15 @@ var (
 			return nil
 		},
 	}
-)
 
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute(version string) {
-	rootCmd.Version = version
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-}
-
-func init() {
-	rand.Seed(time.Now().UnixNano())
+	rootCmd.Version = fmt.Sprintf("%s (build: %s)", tag, shortCommit)
+	rootCmd.SetVersionTemplate(`{{with .Name}}{{printf "%s " .}}{{end}}{{printf "%s" .Version}} - crafted with passion by Luca Sepe <luca.sepe@gmail.com>
+`)
 
 	rootCmd.Flags().BoolP(optNoDigits, "d", false, "do not use digits")
 	rootCmd.Flags().BoolP(optNoSymbols, "x", false, "do not use symbols")
 	rootCmd.Flags().BoolP(optNoNL, "n", false, "do not append a newline when print result")
-
 	rootCmd.Flags().StringP(optSize, "s", "M", fmt.Sprintf("password length in t-shirt size [%s]", availableSizes()))
-	rootCmd.SetVersionTemplate(`{{with .Name}}{{printf "%s " .}}{{end}}{{printf "%s" .Version}} - crafted with passion by Luca Sepe <luca.sepe@gmail.com>
-`)
-}
 
-func appName() string {
-	return filepath.Base(os.Args[0])
+	return rootCmd
 }
